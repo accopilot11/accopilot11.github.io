@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор преобразования координат и скорости</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        #calculator {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <h2>Калькулятор преобразования координат и скорости</h2>
+
+    <label for="velocity">Относительная скорость систем отсчета (V):</label>
+    <input type="number" id="velocity" placeholder="Введите V" required>
+
+    <label for="particleVelocity">Скорость материальной точки в штрихованной системе (v'): </label>
+    <input type="number" id="particleVelocity" placeholder="Введите v'" required>
+
+    <label for="initialCoordinate">Начальная координата материальной точки в штрихованной системе (x₀'): </label>
+    <input type="number" id="initialCoordinate" placeholder="Введите x₀'" required>
+
+    <button onclick="calculate()">Вычислить</button>
+
+    <h3>Результаты:</h3>
+    <p id="result"></p>
+</div>
+
+<script>
+    function calculate() {
+        const V = parseFloat(document.getElementById('velocity').value);
+        const particleVelocity = parseFloat(document.getElementById('particleVelocity').value);
+        const initialCoordinate = parseFloat(document.getElementById('initialCoordinate').value);
+
+        const velocity = V + particleVelocity;
+        const coordinate = initialCoordinate + V;
+
+        const resultMessage = `Скорость материальной точки в нештрихованной системе (v): ${velocity.toFixed(2)}<br>
+                              Координата материальной точки в нештрихованной системе (x): ${coordinate.toFixed(2)}`;
+
+        document.getElementById('result').innerHTML = resultMessage;
+    }
+</script>
+
+</body>
+</html>
